@@ -1,5 +1,5 @@
 # --- Estágio 1: Build ---
-FROM eclipse-temurin:17-jdk-jammy AS builder
+FROM eclipse-temurin:21-jdk-jammy AS builder
 WORKDIR /app
 
 # Instala Maven
