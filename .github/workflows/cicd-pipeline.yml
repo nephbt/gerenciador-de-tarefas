@@ -56,3 +56,28 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/${{ github.repository }}:latest
+
+  # --- NOVOS BLOCOS ADICIONADOS ABAIXO ---
+  deploy-staging:
+    name: Deploy em Homologação
+    runs-on: ubuntu-latest
+    needs: build-and-push-docker
+    environment:
+      name: staging
+      url: https://staging.gerenciador-tarefas.com
+    steps:
+      - name: Deploy para ambiente de Staging
+        run: |
+          echo "Deploy para Staging..."
+
+  deploy-production:
+    name: Deploy em Produção
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    environment:
+      name: production
+      url: https://gerenciador-tarefas.com
+    steps:
+      - name: Deploy para ambiente de Produção
+        run: |
+          echo "Deploy para Produção..."
